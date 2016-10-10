@@ -4,39 +4,69 @@ package com.pluralsight.calcengine;
  * Created by Fauzan on 10/2/2016.
  */
 public class MathEquation {
-    private double leftVal;
-    private double rightVal;
-    private char opCode;
-    private double result;
+    private double mLeftVal;
+    private double mRightVal;
+    private char mOpCode;
+    private double mResult;
 
-    public double getLeftVal() {return leftVal;}
-    public void setLeftVal(double leftVal){this.leftVal = leftVal;}
+    //getter dan setter
+    public double getLeftVal() {return mLeftVal;}
+    public void setLeftVal(double leftVal){this.mLeftVal = leftVal;}
 
-    public double getRightVal() {return rightVal;}
-    public void setRightVal(double rightVal){this.rightVal = rightVal;}
+    public double getRightVal() {return mRightVal;}
+    public void setRightVal(double rightVal){this.mRightVal = rightVal;}
 
-    public double getOpCode() {return opCode;}
-    public void setOpCode(char opCode){this.opCode = opCode;}
+    public double getOpCode() {return mOpCode;}
+    public void setOpCode(char opCode){this.mOpCode = opCode;}
 
-    public double getResult(){return result;}
+    public double getResult(){return mResult;}
+
+    //constructor
+    public MathEquation(){}
+    public MathEquation(char opCode){
+        this.mOpCode = opCode;
+    }
+    public MathEquation(char opCode, double leftVal, double rightVal){
+        this(opCode);
+        this.mLeftVal = leftVal;
+        this.mRightVal = rightVal;
+    }
+
+    //method
+    public void execute(double leftVal, double rightVal){
+        this.mLeftVal = leftVal;
+        this.mRightVal = rightVal;
+
+        execute();
+    }
+
+    public void execute(int leftVal, int rightVal){
+        this.mLeftVal = leftVal;
+        this.mRightVal = rightVal;
+
+        execute();
+
+        mResult = (int) mResult;
+    }
+
 
     public void execute(){
-        switch (opCode) {
+        switch (mOpCode) {
             case 'a':
-                result = leftVal + rightVal;
+                mResult = mLeftVal + mRightVal;
                 break;
             case 's':
-                result = leftVal - rightVal;
+                mResult = mLeftVal - mRightVal;
                 break;
             case 'd':
-                result = leftVal != 0.0d ? leftVal / rightVal : 0.0d;
+                mResult = mLeftVal != 0.0d ? mLeftVal / mRightVal : 0.0d;
                 break;
             case 'm':
-                result = leftVal * rightVal;
+                mResult = mLeftVal * mRightVal;
                 break;
             default:
                 System.out.println("Error Invalid opCode");
-                result = 0.0d;
+                mResult = 0.0d;
                 break;
         }
     }
